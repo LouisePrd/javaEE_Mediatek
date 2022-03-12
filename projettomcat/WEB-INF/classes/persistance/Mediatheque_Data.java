@@ -2,20 +2,14 @@ package persistance;
 
 import java.util.List;
 
+
 import mediatek2022.*;
 
 public class Mediatheque_Data implements PersistentMediatheque {
-
-	static {
-		Mediatheque.getInstance().setData(new Mediatheque_Data());
-	}
-	
-	//constructeur : driver, connexion (voir TP1)
 	
 	@Override
 	public List<Document> tousLesDocumentsDisponibles() {
-		// TODO Auto-generated method stub
-		return null;
+		return Documents_Data.recupDoc();
 	}
 
 	@Override
@@ -35,5 +29,7 @@ public class Mediatheque_Data implements PersistentMediatheque {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 }

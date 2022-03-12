@@ -4,6 +4,10 @@ import mediatek2022.Utilisateur;
 
 public class Utilisateur_Data implements Utilisateur {
 
+	public Utilisateur_Data() {
+		
+	}
+	
 	@Override
 	public String name() {
 		// TODO Auto-generated method stub
