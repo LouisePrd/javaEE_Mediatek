@@ -16,13 +16,13 @@ public class test {
         //System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
         //System.out.println(Mediatheque.getInstance().getDocument(1));
         //System.out.println(Mediatheque.getInstance().getUser("Louis", "12345"));
-        Utilisateur louis = Mediatheque.getInstance().getUser("Louis", "12345");
+        System.out.println(Mediatheque.getInstance().getUser("aaas", "12345"));
         
-        System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
+        /*System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
         Mediatheque.getInstance().getDocument(1).emprunt(louis);
         System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
         Mediatheque.getInstance().getDocument(1).retour();;
-        System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
+        System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());*/
 	}
 
 }

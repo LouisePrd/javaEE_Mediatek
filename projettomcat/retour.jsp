@@ -11,7 +11,6 @@
     </head>
 
     <body>
-		<button onclick="window.location.href = 'retour.jsp';">Retourner mes livres</button></center>
 		<%
 		Utilisateur user;
 		if (session.getAttribute("utilisateurCourant") == null){	
@@ -35,8 +34,8 @@
 		<center><H2>Bonjour <%= user.name() %> !</H2> <br>
 			<%if (!user.isBibliothecaire()){
 			out.println("tu n'es pas bibliothecaire !");%>
-			<p> Bienvenue dans la mediatheque JAVA en ligne. Vous etes abonne, voici les livres disponibles :
-                <%List<Document> listeDoc = Mediatheque.getInstance().tousLesDocumentsDisponibles();
+			<p> Bienvenue dans la mediatheque JAVA en ligne. Vous etes abonne, voici les livres que vous avez empruntes :
+                <%List<Document> listeDoc = (List<Document>)user.data()[1];
                 for (Document doc : listeDoc) {
                     out.println(doc.toString());
                 }

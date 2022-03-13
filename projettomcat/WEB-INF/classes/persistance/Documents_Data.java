@@ -126,8 +126,15 @@ public class Documents_Data implements Document {
 	}
 	
 	public String toString() {
-		String s = "<br><br>Document id :" + this.idDocument + "<br>Nom : " + this.nom + "<br>Type : " + this.type + 
-				"<br>" + "<button onclick=\"window.location.href = 'emprunt.jsp?idDocument=" + this.idDocument + "'\">Emprunter</button>";
+		String s;
+		if(!this.disponible()) {
+			s = "<br><br>Document id :" + this.idDocument + "<br>Nom : " + this.nom + "<br>Type : " + this.type + 
+					"<br>" + "<button onclick=\"window.location.href = 'emprunt.jsp?idDocument=" + this.idDocument + "'\">Emprunter</button>";
+		}
+		else {
+			s = "<br><br>Document id :" + this.idDocument + "<br>Nom : " + this.nom + "<br>Type : " + this.type + 
+					"<br>" + "<button onclick=\"window.location.href = 'retournerPage.jsp?idDocument=" + this.idDocument + "'\">Retourner</button>";
+		}
 		return s;
 	}
 
