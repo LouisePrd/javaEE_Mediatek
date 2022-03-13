@@ -137,5 +137,40 @@ public class Documents_Data implements Document {
 		}
 		return s;
 	}
+	
+	public static void ajoutDoc(int type, Object... args) {
+		Statement requeteStatique = null;
+		String Nom = (String) args[0];
+		int id_Document = (int) args[1];
+		String type_Doc;
+		
+		switch(type) {
+		  case 1:
+			  type_Doc = "Livre";
+			  break;
+		  case 2:
+			  type_Doc = "CD";
+			  break;
+		  case 3:
+			  type_Doc = "DVD";
+			  break;
+		  default:
+			  type_Doc = "Livre";
+		}
+
+		
+		try {
+			requeteStatique = Mediatheque_Data.getConnexion().createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			//INSERT INTO ma_table (colonne_2, colonne_3) VALUES ('seconde', 'troisième')
+			requeteStatique.executeUpdate("INSERT INTO document (Id_Document, Nom, type_Doc) VALUES ("+ id_Document + ", \"" + Nom + "\", \"" + type_Doc + "\")");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }

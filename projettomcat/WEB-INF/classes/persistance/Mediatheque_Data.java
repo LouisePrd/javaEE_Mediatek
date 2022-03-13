@@ -10,8 +10,7 @@ import mediatek2022.*;
 public class Mediatheque_Data implements PersistentMediatheque {
 	
 	static {
-		Mediatheque.getInstance().setData(new Mediatheque_Data());
-		
+		Mediatheque.getInstance().setData(new Mediatheque_Data());	
 	}
 	
 	private static Connection c;
@@ -47,8 +46,7 @@ public class Mediatheque_Data implements PersistentMediatheque {
 
 	@Override
 	public void ajoutDocument(int type, Object... args) {
-		// TODO Auto-generated method stub
-
+		Documents_Data.ajoutDoc(type, args);
 	}
 	
 	public static Connection getConnexion() {

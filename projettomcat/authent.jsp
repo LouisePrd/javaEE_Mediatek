@@ -11,7 +11,7 @@
     </head>
 
     <body>
-		<button onclick="window.location.href = 'retour.jsp';">Retourner mes livres</button></center>
+		
 		<%
 		Utilisateur user;
 		if (session.getAttribute("utilisateurCourant") == null){	
@@ -34,7 +34,7 @@
 		
 		<center><H2>Bonjour <%= user.name() %> !</H2> <br>
 			<%if (!user.isBibliothecaire()){
-			out.println("tu n'es pas bibliothecaire !");%>
+			out.println("Abonne");%>
 			<p> Bienvenue dans la mediatheque JAVA en ligne. Vous etes abonne, voici les livres disponibles :
                 <%List<Document> listeDoc = Mediatheque.getInstance().tousLesDocumentsDisponibles();
                 for (Document doc : listeDoc) {
@@ -42,11 +42,18 @@
                 }
 			}
 			else{
-			out.println("tu es bibliothecaire !");
-			}%></p>
+			out.println("Bibliothecaire");%><br><br>
+			
+			Ajout d'un document :<br><br>
+			<form method="post" action="gestion.jsp">
+			<input type="number" name="id_Document" placeholder="Id Document"/><br><br>
+			<input type="text" name="Nom" placeholder="Nom"/><br><br>
+			<input type="text" name="type_Doc" placeholder="Type Document"/><br><br>
+			<input type="submit" value="Ajouter"/><br>
+			</form>
+			<%}%></p>
 		
-		
-
+		<br>
 		<button onclick="window.location.href = 'index.jsp';">Se deconnecter</button></center>
 
     </body>
@@ -54,11 +61,11 @@
 	
 	
 	<style>
-	p{
-		font-size : 1.6em;
+	p, input{
+		font-size : 1.2em;
 	}
 	h2{
-		font-size : 1.8em;
+		font-size : 1.9em;
 	}
 	html {
 		background-color : #88b8e4;

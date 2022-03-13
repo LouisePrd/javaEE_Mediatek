@@ -12,16 +12,26 @@ public class test {
             System.out.println("non trouvee");
         }
 
+        //Test du fonctionnement des docs
         //System.out.println(Mediatheque.getInstance());
         //System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
-        //System.out.println(Mediatheque.getInstance().getDocument(1));
-        //System.out.println(Mediatheque.getInstance().getUser("Louis", "12345"));
-        System.out.println(Mediatheque.getInstance().getUser("aaas", "12345"));
         
-        /*System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
-        Mediatheque.getInstance().getDocument(1).emprunt(louis);
+        
+        //Test de l'emprunt et du retour
+        /*Utilisateur user = Mediatheque.getInstance().getUser("Louise", "1234");
+        
+        System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
+        Mediatheque.getInstance().getDocument(1).emprunt(user);
         System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
         Mediatheque.getInstance().getDocument(1).retour();;
+        System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());*/
+        
+        //Test de l'ajout
+        /*System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
+        Object[] args2 = new Object[2];
+        args2[0] = "La Nuit des Temps";
+        args2[1] = 5;
+        Mediatheque.getInstance().ajoutDocument(1, args2);
         System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());*/
 	}
 
