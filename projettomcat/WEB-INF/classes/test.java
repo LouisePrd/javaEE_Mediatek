@@ -14,7 +14,7 @@ public class test {
         //System.out.println(Mediatheque.getInstance());
         //System.out.println(Mediatheque.getInstance().tousLesDocumentsDisponibles());
         //System.out.println(Mediatheque.getInstance().getDocument(1));
-        System.out.println(Mediatheque.getInstance().getUser("Louise", "1234"));
+        System.out.println(Mediatheque.getInstance().getUser("Louis", "12345"));
 	}
 
 }

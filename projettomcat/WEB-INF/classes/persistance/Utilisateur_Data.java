@@ -10,9 +10,9 @@ public class Utilisateur_Data implements Utilisateur {
 	private int id_Utilisateur;
 	private String nom_Utilisateur;
 	private String mdp_Utilisateur;
-	private int estBibliothecaire;
+	private boolean estBibliothecaire;
 
-	public Utilisateur_Data(int id_Utilisateur, String nom_Utilisateur, String mdp_Utilisateur, int estBibliothecaire) {
+	public Utilisateur_Data(int id_Utilisateur, String nom_Utilisateur, String mdp_Utilisateur, boolean estBibliothecaire) {
 		this.id_Utilisateur = id_Utilisateur;
 		this.nom_Utilisateur = nom_Utilisateur;
 		this.mdp_Utilisateur = mdp_Utilisateur;
@@ -29,12 +29,7 @@ public class Utilisateur_Data implements Utilisateur {
 
 	@Override
 	public boolean isBibliothecaire() {
-		if (this.estBibliothecaire == 0) {
-			return false;
-		}
-		else {
-			return true;
-		}
+		return this.estBibliothecaire;
 	}
 
 	@Override
@@ -61,26 +56,31 @@ public class Utilisateur_Data implements Utilisateur {
 		}
 		
 			try {
-				if (!tableResultat.next())
-					  System.out.println("Connexion incorrecte");
+				if (!tableResultat.next()) {
+					System.out.println("Connexion incorrecte");
+					return null;
+				} 
 				else
 					do {
 						System.out.println("connexion effectuée");
 						int id = tableResultat.getInt("Id_Utilisateur");
 						String nom = tableResultat.getString("nom_Utilisateur");
 						String mdp = tableResultat.getString("mdp_utilisateur");
-						user = new Utilisateur_Data(id, nom, mdp, 0);
+						Boolean biblio = tableResultat.getBoolean("estBibliothecaire");
+						user = new Utilisateur_Data(id, nom, mdp, biblio);
 					}	
 						while (tableResultat.next());
+						return user;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 			return user;
+			
+			
 	}
 	
 	public String toString() {
-		String s = "Id : " + this.id_Utilisateur + "<br><br>Login " + this.nom_Utilisateur + "<br>Mdp : " + this.mdp_Utilisateur;
+		String s = "Id : " + this.id_Utilisateur + "<br><br>Login " + this.nom_Utilisateur + "<br>Mdp : " + this.mdp_Utilisateur + " biblio : " + this.isBibliothecaire();
 		return s;
 	}
 	

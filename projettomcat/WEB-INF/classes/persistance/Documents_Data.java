@@ -113,7 +113,7 @@ public class Documents_Data implements Document {
 	}
 	
 	public String toString() {
-		String s = "<br><br>Document id " + this.idDocument + "<br>Nom : " + this.nom + "<br>Type : " + this.type + "<br>User :" + this.id_Utilisateur;
+		String s = "<br><br>Document id :" + this.idDocument + "<br>Nom : " + this.nom + "<br>Type : " + this.type + "<br>User :" + this.id_Utilisateur;
 		return s;
 	}
 

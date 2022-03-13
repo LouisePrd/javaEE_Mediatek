@@ -2,6 +2,7 @@
 <html lang="fr">
 <%@ page import="mediatek2022.*" %>
 <%@ page import="java.util.List" %>
+<%@ page import = "java.io.*,java.util.*" %>
 
     <head>
         <title>Catalogue</title>
@@ -10,20 +11,40 @@
     </head>
 
     <body>
-		<%
+		<%		
 		String nom_Utilisateur = request.getParameter("nom");
 		String mdp_utilisateur = request.getParameter("mdp");
-		Mediatheque.getInstance().tousLesDocumentsDisponibles();
-		%> 
+		Utilisateur user = Mediatheque.getInstance().getUser(nom_Utilisateur, mdp_utilisateur);
+		
+		if (Mediatheque.getInstance().getUser(nom_Utilisateur, mdp_utilisateur) == null){
+			%>
+			<center><br><h2>Erreur de connexion : mot de passe ou login incorrect<h2><br>
+			<button onclick="window.location.href = 'index.jsp';">Reessayer</button></center>
+			<%
+		}
+		else{ %>
+			<center><H2>Bonjour <%= nom_Utilisateur %> !</H2> <br>
+		<%}%></p>
+		
+		<%if (!user.isBibliothecaire()){
+			out.println("tu n'es pas bibliothecaire !");
+		}%>
 
-		<center><H2>Bonjour <%= nom_Utilisateur %></H2> 
-		<p> Bienvenue dans la mediatheque JAVA en ligne. Voici les livres disponibles :</p>
-		<%List<Document> listeDoc = Mediatheque.getInstance().tousLesDocumentsDisponibles();
-        for (Document doc : listeDoc) {
-            out.println(doc.toString());
-        }%>
+		
 		</center>
 
     </body>
+	
+	<style>
+	p{
+		font-size : 1.6em;
+	}
+	h2{
+		font-size : 1.8em;
+	}
+	html {
+		background-color : #88b8e4;
+	}
+	</style>
 
 </html>
