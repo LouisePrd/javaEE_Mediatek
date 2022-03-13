@@ -48,7 +48,7 @@ public class Mediatheque_Data implements PersistentMediatheque {
 	@Override
 	public void ajoutDocument(int type, Object... args) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	
 	public static Connection getConnexion() {

@@ -11,29 +11,46 @@
     </head>
 
     <body>
-		<%		
-		String nom_Utilisateur = request.getParameter("nom");
-		String mdp_utilisateur = request.getParameter("mdp");
-		Utilisateur user = Mediatheque.getInstance().getUser(nom_Utilisateur, mdp_utilisateur);
+		<%
+		Utilisateur user;
+		if (session.getAttribute("utilisateurCourant") == null){	
+			String nom_Utilisateur = request.getParameter("nom");
+			String mdp_utilisateur = request.getParameter("mdp");
+			user = Mediatheque.getInstance().getUser(nom_Utilisateur, mdp_utilisateur);
 		
-		if (Mediatheque.getInstance().getUser(nom_Utilisateur, mdp_utilisateur) == null){
-			%>
-			<center><br><h2>Erreur de connexion : mot de passe ou login incorrect<h2><br>
-			<button onclick="window.location.href = 'index.jsp';">Reessayer</button></center>
-			<%
+			if (Mediatheque.getInstance().getUser(nom_Utilisateur, mdp_utilisateur) == null){%>
+				<center><br><h2>Erreur de connexion : mot de passe ou login incorrect<h2><br>
+				<button onclick="window.location.href = 'index.jsp';">Reessayer</button></center>
+				<%
+			}
+			else{ 
+				session.setAttribute("utilisateurCourant", user) ;
+			}
 		}
-		else{ %>
-			<center><H2>Bonjour <%= nom_Utilisateur %> !</H2> <br>
-		<%}%></p>
-		
-		<%if (!user.isBibliothecaire()){
-			out.println("tu n'es pas bibliothecaire !");
+		else{
+			user = (Utilisateur)session.getAttribute("utilisateurCourant");
 		}%>
-
 		
-		</center>
+		<center><H2>Bonjour <%= user.name() %> !</H2> <br>
+			<%if (!user.isBibliothecaire()){
+			out.println("tu n'es pas bibliothecaire !");%>
+			<p> Bienvenue dans la mediatheque JAVA en ligne. Vous etes abonne, voici les livres disponibles :
+                <%List<Document> listeDoc = Mediatheque.getInstance().tousLesDocumentsDisponibles();
+                for (Document doc : listeDoc) {
+                    out.println(doc.toString());
+                }
+			}
+			else{
+			out.println("tu es bibliothecaire !");
+			}%></p>
+		
+		
+
+		<button onclick="window.location.href = 'index.jsp';">Se deconnecter</button></center>
 
     </body>
+	
+	
 	
 	<style>
 	p{

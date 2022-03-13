@@ -34,8 +34,9 @@ public class Utilisateur_Data implements Utilisateur {
 
 	@Override
 	public Object[] data() {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] data = new Object[1];
+		data[0] = this.id_Utilisateur;
+		return data;
 	}
 	
 	public static Utilisateur isCorrect(String login, String password) {

@@ -6,7 +6,7 @@
     <head>
         <title>Catalogue</title>
         <meta charset="utf-8">
-		
+		<%session.invalidate();%>
     </head>
 
     <body><center><br>
@@ -28,6 +28,6 @@
 	html {
 		background-color : #88b8e4;
 	}
-</style>
+	</style>
 
 </html>

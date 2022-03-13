@@ -102,18 +102,32 @@ public class Documents_Data implements Document {
 
 	@Override
 	public void emprunt(Utilisateur u) throws Exception {
-		// TODO Auto-generated method stub
+		Statement requeteStatique = null;
+		
+		requeteStatique = Mediatheque_Data.getConnexion().createStatement();
+		requeteStatique.executeUpdate("UPDATE document SET Id_Utilisateur =" + u.data()[0] + " WHERE id_Document=" + this.idDocument + "");
 		
 	}
 
 	@Override
 	public void retour() {
-		// TODO Auto-generated method stub
+		Statement requeteStatique = null;
 		
+		try {
+			requeteStatique = Mediatheque_Data.getConnexion().createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			requeteStatique.executeUpdate("UPDATE document SET Id_Utilisateur = NULL WHERE id_Document=" + this.idDocument + "");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String toString() {
-		String s = "<br><br>Document id :" + this.idDocument + "<br>Nom : " + this.nom + "<br>Type : " + this.type + "<br>User :" + this.id_Utilisateur;
+		String s = "<br><br>Document id :" + this.idDocument + "<br>Nom : " + this.nom + "<br>Type : " + this.type + 
+				"<br>" + "<button onclick=\"window.location.href = 'emprunt.jsp?idDocument=" + this.idDocument + "'\">Emprunter</button>";
 		return s;
 	}
 
